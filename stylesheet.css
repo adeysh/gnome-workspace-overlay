@@ -1,0 +1,8 @@
+.workspace-overlay {
+    background-color: rgba(0, 0, 0, 0.65);
+    color: white;
+    padding: 12px 24px;
+    font-size: 26px;
+    font-weight: 600;
+    border-radius: 12px;
+}

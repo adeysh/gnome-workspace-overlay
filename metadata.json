@@ -1,0 +1,9 @@
+{
+    "uuid": "workspace-overlay@adesh",
+    "name": "Workspace Overlay",
+    "description": "Shows workspace name when switching.",
+    "shell-version": [
+        "46"
+    ],
+    "version": 1
+}
