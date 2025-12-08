@@ -8,15 +8,13 @@ export default class WorkspaceOverlayPreferences {
             schema_id: "org.gnome.shell.extensions.workspace-overlay",
         });
 
-        const wm = global.workspace_manager;
-        const count = wm.get_n_workspaces();
-
         let names = settings.get_strv("workspace-names");
 
-        // Ensure array has one entry per workspace
-        if (names.length < count) {
+        // Guarantee at least 10 editable slots (safe default)
+        const MAX_SLOTS = 10;
+        if (names.length < MAX_SLOTS) {
             const extended = names.slice();
-            while (extended.length < count) extended.push("");
+            while (extended.length < MAX_SLOTS) extended.push("");
             settings.set_strv("workspace-names", extended);
             names = extended;
         }
@@ -26,7 +24,7 @@ export default class WorkspaceOverlayPreferences {
             description: "Set custom names for your workspaces",
         });
 
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < MAX_SLOTS; i++) {
             const row = new Adw.EntryRow({
                 title: `Workspace ${i + 1}`,
                 text: names[i] || "",
