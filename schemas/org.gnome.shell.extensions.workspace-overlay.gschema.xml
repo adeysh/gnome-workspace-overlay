@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.workspace-overlay"
+          path="/org/gnome/shell/extensions/workspace-overlay/">
+
+    <key name="workspace-names" type="as">
+      <default>[]</default>
+      <summary>Workspace Names</summary>
+      <description>Custom names for each workspace.</description>
+    </key>
+
+  </schema>
+</schemalist>
