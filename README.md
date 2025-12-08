@@ -8,12 +8,33 @@ Designed for **GNOME 45/46** (Ubuntu 24.04+), using the **new ES module extensio
 
 ## Features
 
--   Shows workspace name/number as an on-screen overlay
+-   Shows **workspace name/number** as an on-screen overlay
 -   Smooth fade-in / fade-out animation
--   Modern GNOME ESM-based extension
--   Zero dependencies
+-   Modern **GNOME ESM-based** extension
+-   **Zero** dependencies
 -   Completely native look and feel
--   Works on Wayland and X11
+-   Works on **Wayland** and **X11**
+
+### :sparkles: New in v1.1.0 :sparkles:
+
+-   Added **workspace renaming** through a preferences window
+-   Custom names persist using **GSettings**
+-   Overlay now displays user-defined workspace names
+-   Simple editable list UI for workspace titles _(Currently 10)_
+
+---
+
+## ⚙️ Preferences
+
+You can rename workspaces from the extension’s preferences window.
+
+### Open Preferences
+
+-   Open the **Extensions** app → find **Workspace Overlay** → click **Settings**
+-   Or run in terminal:
+    ```bash
+    gnome-extensions prefs workspace-overlay@adesh
+    ```
 
 ---
 
