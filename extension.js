@@ -17,7 +17,10 @@ export default class WorkspaceOverlayExtension extends Extension {
         const index = wm.get_active_workspace_index();
         const ws = wm.get_workspace_by_index(index);
 
-        let name = ws?.name;
+        const settings = this.getSettings();
+        const savedNames = settings.get_strv("workspace-names");
+
+        let name = savedNames[index];
         if (!name || name.trim() === "") name = `Workspace ${index + 1}`;
 
         if (!this._overlayLabel) {
