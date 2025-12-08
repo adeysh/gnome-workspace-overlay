@@ -4,6 +4,8 @@ A lightweight GNOME Shell extension that displays a macOS-style overlay showing 
 
 Designed for **GNOME 45/46** (Ubuntu 24.04+), using the **new ES module extension API**.
 
+---
+
 ## Features
 
 -   Shows workspace name/number as an on-screen overlay
@@ -13,9 +15,13 @@ Designed for **GNOME 45/46** (Ubuntu 24.04+), using the **new ES module extensio
 -   Completely native look and feel
 -   Works on Wayland and X11
 
+---
+
 ## Preview
 
 A small label appears at the top-center of the screen for ~1.5 seconds whenever you switch workspaces similar to **macOS Mission Control’s desktop name overlay**.
+
+---
 
 ## Installation (Manual)
 
@@ -47,6 +53,8 @@ A small label appears at the top-center of the screen for ~1.5 seconds whenever 
 Log out & log back in (Wayland)
 or `Alt+F2 → r` (X11).
 
+---
+
 ## GNOME Compatibility
 
 | GNOME Version | Status                          |
@@ -54,6 +62,8 @@ or `Alt+F2 → r` (X11).
 | 46.x          | Working                         |
 | 45.x          | Working                         |
 | 44 and below  | ❌ Not supported (uses old API) |
+
+---
 
 ## Roadmap / Future Features
 
