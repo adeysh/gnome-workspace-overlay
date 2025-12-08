@@ -10,18 +10,21 @@ export default class WorkspaceOverlayExtension extends Extension {
         this._overlayLabel = null;
         this._workspaceSignal = null;
         this._fadeTimeoutId = null;
+        this._settings = this.getSettings();
     }
 
     _showOverlay() {
         const wm = global.workspace_manager;
         const index = wm.get_active_workspace_index();
-        const ws = wm.get_workspace_by_index(index);
 
-        const settings = this.getSettings();
+        // Read saved names from GSettings
+        const settings = this._settings;
         const savedNames = settings.get_strv("workspace-names");
 
         let name = savedNames[index];
-        if (!name || name.trim() === "") name = `Workspace ${index + 1}`;
+        if (!name || name.trim() === "") {
+            name = `Workspace ${index + 1}`;
+        }
 
         if (!this._overlayLabel) {
             this._overlayLabel = new St.Label({
