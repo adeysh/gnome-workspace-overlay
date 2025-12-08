@@ -18,12 +18,14 @@ export default class WorkspaceOverlayExtension extends Extension {
     }
 
     _showOverlay() {
+        log("[WorkspaceOverlay] Workspace changed");
+
         const wm = global.workspace_manager;
         const index = wm.get_active_workspace_index();
 
         // Read saved names from GSettings
-        const settings = this._settings;
-        const savedNames = settings.get_strv("workspace-names");
+        const savedNames = this._settings.get_strv("workspace-names");
+        log(`[WorkspaceOverlay] Saved names array: ${JSON.stringify(savedNames)}`);
 
         let name = savedNames[index];
         if (!name || name.trim() === "") {
