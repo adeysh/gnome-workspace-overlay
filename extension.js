@@ -1,6 +1,7 @@
 import St from "gi://St";
 import GLib from "gi://GLib";
 import Clutter from "gi://Clutter";
+import Gio from "gi://Gio";
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
@@ -10,7 +11,10 @@ export default class WorkspaceOverlayExtension extends Extension {
         this._overlayLabel = null;
         this._workspaceSignal = null;
         this._fadeTimeoutId = null;
-        this._settings = this.getSettings();
+
+        this._settings = new Gio.Settings({
+            schema_id: "org.gnome.shell.extensions.workspace-overlay",
+        });
     }
 
     _showOverlay() {
