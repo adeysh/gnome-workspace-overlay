@@ -10,37 +10,79 @@ export default class WorkspaceOverlayPreferences {
 
         let names = settings.get_strv("workspace-names");
 
-        // Guarantee at least 10 editable slots (safe default)
-        const MAX_SLOTS = 10;
-        if (names.length < MAX_SLOTS) {
-            const extended = names.slice();
-            while (extended.length < MAX_SLOTS) extended.push("");
-            settings.set_strv("workspace-names", extended);
-            names = extended;
-        }
-
-        const group = new Adw.PreferencesGroup({
-            title: "Workspace Names",
-            description: "Set custom names for your workspaces",
-        });
-
-        for (let i = 0; i < MAX_SLOTS; i++) {
-            const row = new Adw.EntryRow({
-                title: `Workspace ${i + 1}`,
-                text: names[i] || "",
-            });
-
-            row.connect("notify::text", () => {
-                const updated = settings.get_strv("workspace-names");
-                updated[i] = row.text;
-                settings.set_strv("workspace-names", updated);
-            });
-
-            group.add(row);
-        }
-
         const page = new Adw.PreferencesPage();
-        page.add(group);
         window.add(page);
+
+        let group = null;
+
+        const rebuildGroup = () => {
+            // Remove old group if it exists
+            if (group) {
+                page.remove(group);
+            }
+
+            group = new Adw.PreferencesGroup({
+                title: "Workspace Names",
+                description: "Set custom names for your workspaces",
+            });
+
+            // Existing workspace name rows
+            names.forEach((value, index) => {
+                const row = new Adw.EntryRow({
+                    title: `Workspace ${index + 1}`,
+                    text: value,
+                });
+
+                row.connect("notify::text", () => {
+                    names[index] = row.text;
+                    settings.set_strv("workspace-names", names);
+                });
+
+                // Remove button
+                const removeButton = new Gtk.Button({
+                    icon_name: "user-trash-symbolic",
+                    valign: Gtk.Align.CENTER,
+                    css_classes: ["destructive-action"],
+                    tooltip_text: "Remove this workspace name",
+                });
+
+                removeButton.connect("clicked", () => {
+                    // Remove the *current* index safely
+                    names.splice(index, 1);
+                    settings.set_strv("workspace-names", names);
+                    rebuildGroup();
+                });
+
+                row.add_suffix(removeButton);
+                row.activatable_widget = removeButton;
+
+                group.add(row);
+            });
+
+            // Add new workspace name action
+            const addRow = new Adw.ActionRow({
+                title: "Add workspace name",
+            });
+
+            const addButton = new Gtk.Button({
+                label: "Add",
+                valign: Gtk.Align.CENTER,
+            });
+
+            addButton.connect("clicked", () => {
+                names.push("");
+                settings.set_strv("workspace-names", names);
+                rebuildGroup();
+            });
+
+            addRow.add_suffix(addButton);
+            addRow.activatable_widget = addButton;
+
+            group.add(addRow);
+
+            page.add(group);
+        };
+
+        rebuildGroup();
     }
 }
