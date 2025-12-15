@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.1 – Dynamic Workspace Naming
+
+-   Removed fixed workspace limit in preferences
+-   Workspace names can now be added or removed dynamically
+-   Improved preferences UI to better match GNOME patterns
+-   No changes required to existing user settings
+
 ## v1.1.0 – Workspace Naming
 
 -   Added preferences window for renaming workspaces
