@@ -15,18 +15,20 @@ Designed for **GNOME 45/46** (Ubuntu 24.04+), using the **new ES module extensio
 -   Completely native look and feel
 -   Works on **Wayland** and **X11**
 
-### :sparkles: New in v1.1.0 :sparkles:
+### ✨ New in v1.1.1 ✨
 
--   Added **workspace renaming** through a preferences window
+-   **Unlimited workspace renaming** via preferences
+-   Add or remove workspace names dynamically
 -   Custom names persist using **GSettings**
--   Overlay now displays user-defined workspace names
--   Simple editable list UI for workspace titles _(Currently 10)_
+-   Overlay automatically falls back to `Workspace N` when no custom name is set
+-   Improved, GNOME-style preferences UI
 
 ---
 
 ## ⚙️ Preferences
 
 You can rename workspaces from the extension’s preferences window.
+Changes apply instantly — no restart required.
 
 ### Open Preferences
 
@@ -62,7 +64,7 @@ A small label appears at the top-center of the screen for ~1.5 seconds whenever 
 3. Copy the files:
 
     ```bash
-    cp * ~/.local/share/gnome-shell/extensions/workspace-overlay@adesh/
+    cp -r * ~/.local/share/gnome-shell/extensions/workspace-overlay@adesh/
     ```
 
 4. Enable the extension:
@@ -72,17 +74,17 @@ A small label appears at the top-center of the screen for ~1.5 seconds whenever 
     ```
 
 Log out & log back in (Wayland)
-or `Alt+F2 → r` (X11).
+or press Alt + F2, type r, and press Enter (X11).
 
 ---
 
 ## GNOME Compatibility
 
-| GNOME Version | Status                          |
-| ------------- | ------------------------------- |
-| 46.x          | Working                         |
-| 45.x          | Working                         |
-| 44 and below  | ❌ Not supported (uses old API) |
+| GNOME Version | Status                             |
+| ------------- | ---------------------------------- |
+| 46.x          | Working                            |
+| 45.x          | Working                            |
+| 44 and below  | ❌ Not supported (uses legacy API) |
 
 ---
 
